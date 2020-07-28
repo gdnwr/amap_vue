@@ -23,19 +23,19 @@ export const coordTransInput = (lng, lat, coordType = 'GCJ02') => {
 };
 
 /**
- * 字符串转polygon的path
+ * 字符串转polyline、polygon的path
  * @function
- * @param {String} polygonStr
+ * @param {String} pathStr
  * @param {String} coordType='GCJ02'
  * @returns {Array} [[116.35,39.94],[116.43,39.94]]
  */
-export const stringToPolygonPath = (polygonStr, coordType = 'GCJ02') => {
+export const stringToPath = (pathStr, coordType = 'GCJ02') => {
   const path = [];
 
   // 字符串格式为：'116.35,39.94;116.43,39.94;'
-  if (polygonStr.indexOf(';') !== -1) {
-    polygonStr.split(';').forEach((pointStr) => {
-      if (polygonStr.indexOf(',') !== -1) {
+  if (pathStr.indexOf(';') !== -1) {
+    pathStr.split(';').forEach((pointStr) => {
+      if (pathStr.indexOf(',') !== -1) {
         const x = Number(pointStr.split(',')[0]);
         const y = Number(pointStr.split(',')[1]);
         if (x && y) {
@@ -97,6 +97,6 @@ export const extentSplit = ({
 
 export default {
   coordTransInput,
-  stringToPolygonPath,
+  stringToPath,
   extentSplit,
 };

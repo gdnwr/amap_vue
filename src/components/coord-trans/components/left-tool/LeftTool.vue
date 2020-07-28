@@ -14,6 +14,12 @@
         <PointLocation :input-coord-type="inputCoordType" />
       </el-collapse-item>
       <el-collapse-item
+        title="单线定位"
+        name="polygon-location"
+      >
+        <PolylineLocation :input-coord-type="inputCoordType" />
+      </el-collapse-item>
+      <el-collapse-item
         title="单面定位"
         name="polygon-location"
       >
@@ -32,6 +38,7 @@
 <script>
 import CoordType from '../coord-type/CoordType.vue';
 import PointLocation from '../point-location/PointLocation.vue';
+import PolylineLocation from '../polyline-location/PolylineLocation.vue';
 import PolygonLocation from '../polygon-location/PolygonLocation.vue';
 import ExtentSplit from '../extent-split/ExtentSplit.vue';
 
@@ -40,6 +47,7 @@ export default {
   components: {
     CoordType,
     PointLocation,
+    PolylineLocation,
     PolygonLocation,
     ExtentSplit,
   },
@@ -54,7 +62,8 @@ export default {
 
 <style lang="scss" scoped>
   .left-tool {
-    margin: 20px;
+    overflow-y: auto;
+    padding: 20px;
 
     .coord-type {
       margin-bottom: 20px;

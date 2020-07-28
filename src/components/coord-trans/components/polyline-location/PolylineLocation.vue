@@ -1,5 +1,5 @@
 <template>
-  <div class="polygon-location">
+  <div class="polyline-location">
     <el-input
       v-model="polygonStr"
       type="textarea"
@@ -20,7 +20,7 @@
 import { stringToPath } from '../../../../utils/GeometryUtil';
 
 export default {
-  name: 'PolygonLocation',
+  name: 'PolylineLocation',
   props: {
     // 输入坐标类型：WGS84(原始)、WGS84(原始)、BD09(百度)
     inputCoordType: {
@@ -34,32 +34,32 @@ export default {
     };
   },
   methods: {
-    locationPolygon(path) {
+    locationPolyline(path) {
       const { amap, AMap } = window;
 
       amap.clearMap();
 
-      const polygon = new AMap.Polygon({
+      const polyline = new AMap.Polyline({
         path,
-        fillColor: '#fff', // 多边形填充颜色
-        borderWeight: 2, // 线条宽度，默认为 1
+        strokeWeight: 4, // 轮廓线宽度
+        strokeOpacity: 1, // 轮廓线透明度
         strokeColor: 'red', // 线条颜色
       });
 
-      amap.add(polygon);
+      amap.add(polyline);
       amap.setFitView();
     },
     // 定位资源
     handleLocation() {
       const path = stringToPath(this.polygonStr, this.inputCoordType);
-      this.locationPolygon(path);
+      this.locationPolyline(path);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  .polygon-location {
+  .polyline-location {
     .row-item {
       display: flex;
       align-items: center;
